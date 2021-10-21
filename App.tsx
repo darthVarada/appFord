@@ -1,7 +1,13 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, Button, Alert } from 'react-native';
 import { CheckBox } from 'react-native-elements';
+
+//Importing screens into the App 
+
+import Home from './screens/Home';
+
 
 const Separator = () => (
   <View style={styles.separator} />
@@ -9,7 +15,10 @@ const Separator = () => (
 
 export default function App() {
   
+  const Stack = createNativeStackNavigator()
+
   return (
+
     <View style={styles.container}>
 
       <Image source={require('./assets/FordPassImg.png')} style={styles.ImageFord}/>
@@ -54,6 +63,15 @@ export default function App() {
 
       <StatusBar style="auto" />
     </View>
+// Here the Container for the routes is set and we can call other screens
+//from here 
+// To add a new screen declare a <Stack.Screen/> tag with the name='<>' and component=<{}> parameters
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Home' component={Home}/> 
+        <Stack.Screen name='Home' component={Details}/>
+      </Stack.Navigator>
+    </NavigationContainer>
 
   );
 }
